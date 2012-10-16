@@ -10,7 +10,7 @@ var topic_ctrl = require('./topic');
 var message_ctrl = require('./message');
 var Util = require('../libs/util');
 var config = require('../conf');
-var EventProxy = require('eventproxy').EventProxy;
+var EventProxy = require('eventproxy');
 var check = require('validator').check;
 var sanitize = require('validator').sanitize;
 var crypto = require('crypto');
@@ -33,7 +33,7 @@ exports.index = function (req, res, next) {
       });
     };
 
-    var proxy = new EventProxy();
+    var proxy = EventProxy.create();
     proxy.assign('recent_topics', 'recent_replies', 'relation', render);
 
     var query = {author_id: user._id};
@@ -267,7 +267,7 @@ exports.follow = function (req, res, next) {
       res.json({status: 'failed'});
     }
     
-    var proxy = new EventProxy();
+    var proxy = EventProxy.create();
     var done = function () {
       res.json({ status: 'success' });
     };
@@ -401,7 +401,7 @@ exports.get_collect_topics = function (req, res, next) {
     });
   };
 
-  var proxy = new EventProxy();
+  var proxy = EventProxy.create();
   proxy.assign('topics', 'pages', render);
 
   TopicCollect.find({ user_id: req.session.user._id }, function (err, docs) {
@@ -510,7 +510,7 @@ exports.list_topics = function (req, res, next) {
       });
     };
 
-    var proxy = new EventProxy();
+    var proxy = EventProxy.create();
     proxy.assign('topics', 'relation', 'pages', render);
 
     var query = {'author_id': user._id};
@@ -565,7 +565,7 @@ exports.list_replies = function (req, res, next) {
       });
     };
 
-    var proxy = new EventProxy();
+    var proxy = EventProxy.create();
     proxy.assign('topics', 'relation', 'pages', render);
 
     Reply.find({author_id: user._id}, function (err, replies) {

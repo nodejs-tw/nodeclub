@@ -18,7 +18,7 @@ var at_ctrl = require('./at');
 var tag_ctrl = require('./tag');
 var user_ctrl = require('./user');
 var reply_ctrl = require('./reply');
-var EventProxy = require('eventproxy').EventProxy;
+var EventProxy = require('eventproxy');
 var Showdown = require('../public/libs/showdown');
 var Util = require('../libs/util');
 
@@ -186,7 +186,7 @@ exports.create = function (req, res, next) {
       topic.save(function(err){
         if(err) return next(err);
       
-        var proxy = new EventProxy();
+        var proxy = EventProxy.create();
         var render = function(){
           res.redirect('/topic/'+topic._id);
         }
@@ -312,7 +312,7 @@ exports.edit = function(req,res,next){
           topic.save(function(err){
             if(err) return next(err);
 
-            var proxy = new EventProxy();
+            var proxy = EventProxy.create();
             var render = function(){
               res.redirect('/topic/'+topic._id);
             }
@@ -403,7 +403,7 @@ exports.delete = function(req,res,next){
       res.render('notify/notify',{error: '此话题不存在或已被删除。'});
       return; 
     }
-    var proxy = new EventProxy();
+    var proxy = EventProxy.create();
     var render = function(){
       res.render('notify/notify',{success: '话题已被删除。'});
       return;
@@ -432,7 +432,7 @@ exports.top = function (req, res, next) {
       return; 
     }
     topic.top = is_top;
-    var proxy = new EventProxy();
+    var proxy = EventProxy.create();
     var render = function() {
       var msg = topic.top ? '此话题已经被置顶。' : '此话题已经被取消置顶。';
       res.render('notify/notify', {success: msg} );
@@ -515,7 +515,7 @@ exports.de_collect = function(req,res,next){
 
 // get topic without replies
 function get_topic_by_id(id, cb) {
-  var proxy = new EventProxy();
+  var proxy = EventProxy.create();
   var done = function (topic, tags, author, last_reply) {
     return cb(null, topic, tags, author, last_reply);
   };
@@ -571,7 +571,7 @@ function get_topic_by_id(id, cb) {
 }
 // get topic with replies
 function get_full_topic(id, cb) {
-  var proxy = new EventProxy();
+  var proxy = EventProxy.create();
   var done = function(topic,tags,author,replies){
     return cb(null, '', topic,tags,author,replies);
   };
@@ -626,7 +626,7 @@ function get_topics_by_query(query,opt, cb) {
       topics_id.push(docs[i]._id);
     }
 
-    var proxy = new EventProxy();
+    var proxy = EventProxy.create();
     var done = function () {
       return cb(null, topics);
     }

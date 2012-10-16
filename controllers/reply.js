@@ -12,7 +12,7 @@ var message_ctrl = require('./message');
 
 var Util = require('../libs/util');
 var Showdown = require('../public/libs/showdown');
-var EventProxy = require('eventproxy').EventProxy;
+var EventProxy = require('eventproxy');
 
 exports.add = function (req, res, next) {
   if (!req.session || !req.session.user) {
@@ -32,7 +32,7 @@ exports.add = function (req, res, next) {
   var render = function () {
     res.redirect('/topic/' + topic_id);
   };
-  var proxy = new EventProxy();
+  var proxy = EventProxy.create();
   proxy.assign('reply_saved', 'message_saved', 'score_saved', render);
 
   var reply = new Reply();
@@ -102,7 +102,7 @@ exports.add_reply2 = function (req, res, next) {
       res.partial('reply/reply2', {object: reply, as: 'reply'});
     });
   };
-  var proxy = new EventProxy();
+  var proxy = EventProxy.create();
   proxy.assign('reply_saved', 'message_saved', done);
 
   var reply = new Reply();
@@ -211,7 +211,7 @@ function get_replies_by_topic_id(id, cb) {
       return cb(err, []);
     }
 
-    var proxy = new EventProxy();
+    var proxy = EventProxy.create();
     var done = function () {
       var replies2 = [];
       for (var i = replies.length - 1; i >= 0; i--) {

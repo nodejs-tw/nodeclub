@@ -13,7 +13,7 @@ var tag_ctrl = require('./tag');
 var user_ctrl = require('./user');
 var topic_ctrl = require('./topic');
 var config = require('../conf');
-var EventProxy = require('eventproxy').EventProxy;
+var EventProxy = require('eventproxy');
 
 
 exports.index = function (req, res, next) {

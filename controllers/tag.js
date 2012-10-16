@@ -9,7 +9,7 @@ var check = require('validator').check,
 var user_ctrl = require('./user');
 var topic_ctrl = require('./topic');
 var config = require('../conf');
-var EventProxy = require('eventproxy').EventProxy;
+var EventProxy = require('eventproxy');
 
 exports.list_topic = function(req,res,next){
   var tag_name = req.params.name;
@@ -51,7 +51,7 @@ exports.list_topic = function(req,res,next){
         });
       }
 
-      var proxy = new EventProxy();
+      var proxy = EventProxy.create();
       proxy.assign('topic_ids','collection','hot_topics','no_reply_topics','pages',done);
 
       TopicTag.find({tag_id:tag._id},function(err,docs){
@@ -214,7 +214,7 @@ exports.delete = function(req,res,next){
   Tag.findOne({name:tag_name},function(err,tag){
     if(err) return next(err);
     if(tag){
-      var proxy = new EventProxy();
+      var proxy = EventProxy.create();
       var done = function(){
         tag.remove(function(err){
           if(err) return next(err);

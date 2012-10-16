@@ -12,7 +12,7 @@
 var models = require('../models');
 var User = models.User;
 var Message = require('./message');
-var EventProxy = require('eventproxy').EventProxy;
+var EventProxy = require('eventproxy');
 
 
 function searchUsers(text, callback) {

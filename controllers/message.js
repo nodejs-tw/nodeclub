@@ -5,7 +5,7 @@ var user_ctrl = require('./user');
 var mail_ctrl = require('./mail');
 var topic_ctrl = require('./topic'); 
 
-var EventProxy = require('eventproxy').EventProxy;
+var EventProxy = require('eventproxy');
 
 exports.index = function(req,res,next){
   if(!req.session.user){
@@ -25,7 +25,7 @@ exports.index = function(req,res,next){
       res.render('message/index',{has_read_messages:[],hasnot_read_messages:[]});
       return;
     }
-    var proxy = new EventProxy();
+    var proxy = EventProxy.create();
     var render = function(){
       var has_read_messages = [];
       var hasnot_read_messages = [];
@@ -92,7 +92,7 @@ exports.mark_all_read = function(req,res,next){
       res.json({'status':'success'}); 
       return;
     }
-    var proxy = new EventProxy();
+    var proxy = EventProxy.create();
     var done = function(){
       res.json({'status':'success'}); 
     }
@@ -177,7 +177,7 @@ function get_message_by_id(id,cb){
   Message.findOne({_id:id},function(err,message){
     if(err) return cb(err);
     if(message.type == 'reply' || message.type == 'reply2' || message.type == 'at'){
-      var proxy = new EventProxy();
+      var proxy = EventProxy.create();
       var done = function(author,topic){
         message.author = author;
         message.topic = topic;

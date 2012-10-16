@@ -1,6 +1,6 @@
 var mailer = require('nodemailer');
 var config = require('../conf');
-var EventProxy = require('eventproxy').EventProxy;
+var eventproxy = require('eventproxy');
 var util = require('util');
 mailer.SMTP = {
   host: config.mail_host,
@@ -22,7 +22,7 @@ var timer;
  * control mailer
  * @type {EventProxy}
  */
-var mailEvent = new EventProxy();
+var mailEvent = eventproxy.create();
 /**
  * when need to send an email, start to check the mails array and send all of emails.
  */
