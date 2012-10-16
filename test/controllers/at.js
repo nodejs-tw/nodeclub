@@ -10,7 +10,7 @@
 var rewire = require("rewire");
 var should = require('should');
 var Message = require('../../controllers/message');
-var config = require('../../config').config;
+var config = require('../../conf');
 var createUsers = require('../support/create_test_users').createUsers;
 
 describe('controllers/at.js', function () {

@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var config = require('../config');
+var config = require('../conf');
   
 var UserSchema = new Schema({
   name: { type: String, index: true },

@@ -1,8 +1,8 @@
 {
   "name": "nodeclub", 
-  "version": "0.3.2",
-  "main": "./app.js",
-  "private": true, 
+  "version": "0.4.0",
+  "description": "Community system base on nodejs.",
+  "main": "app.js",
   "dependencies": {
     "express": "2.5.1",
     "ejs": ">=0.8.0",
@@ -18,10 +18,16 @@
   "devDependencies": {
     "should": "*",
     "mocha": "*",
-    "rewire": "0.3.0",
-    "visionmedia-jscoverage": "*"
+    "rewire": "*",
+    "supertest": "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/cnodejs/nodeclub.git"
   },
   "scripts": {
     "test": "make test"
-  }
+  },
+  "author": "fengmk2 <fengmk2@gmail.com> (http://fengmk2.github.com)",
+  "license": "MIT"
 }

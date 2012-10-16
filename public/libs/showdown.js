@@ -92,7 +92,7 @@ var Showdown = {};
 var HOST;
 if (typeof exports !== "undefined") {
   Showdown = exports;
-  var config = require('../../config').config;
+  var config = require('../../conf');
   HOST = 'http://' + config.host;
   if (config.port !== 80) {
     HOST += ':' + config.port;

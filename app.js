@@ -9,7 +9,7 @@
 var path = require('path');
 var express = require('express');
 var ndir = require('ndir');
-var config = require('./config').config;
+var config = require('./conf');
 // host: http://127.0.0.1
 var urlinfo = require('url').parse(config.host);
 config.hostname = urlinfo.hostname || config.host;

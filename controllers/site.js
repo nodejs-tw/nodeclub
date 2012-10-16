@@ -12,7 +12,7 @@
 var tag_ctrl = require('./tag');
 var user_ctrl = require('./user');
 var topic_ctrl = require('./topic');
-var config = require('../config').config;
+var config = require('../conf');
 var EventProxy = require('eventproxy').EventProxy;
 
 

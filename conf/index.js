@@ -1,10 +1,20 @@
+/*!
+ * nodeclub - conf/index.js
+ * Copyright(c) 2012 fengmk2 <fengmk2@gmail.com>
+ * MIT Licensed
+ */
+
+"use strict";
+
 /**
- * config
+ * Module dependencies.
  */
 
 var path = require('path');
+var fs = require('fs');
+fs.existsSync = fs.existsSync || path.existsSync;
 
-exports.config = {
+var settings = {
   debug: true,
   name: 'Node Club',
   description: 'Node Club 是用Node.js开发的社区软件',
@@ -104,3 +114,17 @@ exports.config = {
     // { name: 'wordpress_redirect', options: {} }
   ]
 };
+
+/**
+ * Loading custom settings
+ */
+
+var configPath = path.join(__dirname, 'config.js');
+if (fs.existsSync(configPath)) {
+  var config = require('configPath');
+  for (var k in config) {
+    settings[k] = config[k];
+  }
+}
+
+module.exports = settings;

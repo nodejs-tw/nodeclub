@@ -8,7 +8,7 @@ var check = require('validator').check,
 
 var user_ctrl = require('./user');
 var topic_ctrl = require('./topic');
-var config = require('../config').config;
+var config = require('../conf');
 var EventProxy = require('eventproxy').EventProxy;
 
 exports.list_topic = function(req,res,next){

@@ -1,7 +1,7 @@
 var fs = require('fs');
 var path = require('path');
 var ndir = require('ndir');
-var config = require('../config').config;
+var config = require('../conf');
 
 exports.uploadImage = function (req, res, next) {
   if (!req.session || !req.session.user) {

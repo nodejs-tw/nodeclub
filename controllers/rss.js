@@ -1,6 +1,6 @@
 var topic_ctrl = require('./topic');
 
-var config = require('../config').config;
+var config = require('../conf');
 var data2xml = require('data2xml');
 var markdown = require('node-markdown').Markdown;
 

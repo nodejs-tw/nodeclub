@@ -1,11 +1,11 @@
-var models = require('../models'),
-  User = models.User;
+var models = require('../models');
+var User = models.User;
 
-var check = require('validator').check,
-  sanitize = require('validator').sanitize;
+var check = require('validator').check;
+var sanitize = require('validator').sanitize;
 
 var crypto = require('crypto');
-var config = require('../config').config;
+var config = require('../conf');
 
 var message_ctrl = require('./message');
 var mail_ctrl = require('./mail');

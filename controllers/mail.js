@@ -1,5 +1,5 @@
 var mailer = require('nodemailer');
-var config = require('../config').config;
+var config = require('../conf');
 var EventProxy = require('eventproxy').EventProxy;
 var util = require('util');
 mailer.SMTP = {

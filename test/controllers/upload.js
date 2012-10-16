@@ -1,5 +1,5 @@
 var upload = require('../../controllers/upload');
-var config = require('../../config').config;
+var config = require('../../conf');
 var path = require('path');
 var fs = require('fs');
 var ndir = require('ndir');
