@@ -16,8 +16,7 @@ fs.existsSync = fs.existsSync || path.existsSync;
 
 var settings = {
   debug: true,
-  name: 'Node Club',
-  description: 'Node Club 是用Node.js开发的社区软件',
+  name: 'NodeClub',
   version: '0.2.2',
 
   // site settings
@@ -25,12 +24,13 @@ var settings = {
     '<meta name="author" content="EDP@TAOBAO" />',
   ],
   host: 'localhost.cnodejs.org',
+  port: 3000,
   site_logo: '', // default is `name`
   site_navs: [
     // [ path, title, [target=''] ]
     [ '/about', '关于' ],
   ],
-  site_static_host: '', // 静态文件存储域名
+  site_static_host: '/public', // 静态文件存储域名
   site_enable_search_preview: false, // 开启google search preview
   site_google_search_domain:  'cnodejs.org',  // google search preview中要搜索的域名
 
@@ -39,7 +39,6 @@ var settings = {
   db: 'mongodb://127.0.0.1/node_club_dev',
   session_secret: 'node_club',
   auth_cookie_name: 'node_club',
-  port: 3000,
 
   // 话题列表显示的话题数量
   list_topic_count: 20,
@@ -126,5 +125,9 @@ if (fs.existsSync(configPath)) {
     settings[k] = config[k];
   }
 }
+
+// host: http://127.0.0.1
+var urlinfo = require('url').parse(settings.host);
+settings.hostname = urlinfo.hostname || settings.host;
 
 module.exports = settings;

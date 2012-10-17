@@ -1,6 +1,6 @@
 var fs = require('fs');
 var path = require('path');
-var ndir = require('ndir');
+var mkdirp = require('mkdirp');
 var config = require('../conf');
 
 exports.uploadImage = function (req, res, next) {
@@ -15,7 +15,7 @@ exports.uploadImage = function (req, res, next) {
   }
   var uid = req.session.user._id.toString();
   var userDir = path.join(config.upload_dir, uid);
-  ndir.mkdir(userDir, function (err) {
+  mkdirp(userDir, function (err) {
     if (err) {
       return next(err);
     }

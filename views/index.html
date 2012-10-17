@@ -1,15 +1,17 @@
-<%- partial('sidebar') %>
+<%- include views/sidebar.html %>
 
 <div id='content'>
 	<div class='panel'>
 		<div class='moon'>
 			<% if (locals.current_user && current_user.is_admin) { %>
-			<span class='fr'><a href='/tags/edit'><img src="<%- config.site_static_host %>/images/wrench_icon&16.png" title='编辑标签' /></a></span>
+			<span class='fr'>
+				<a href='/tags/edit'><img src="<%- config.site_static_host %>/images/wrench_icon&16.png" title='编辑标签' /></a>
+			</span>
 			<% } %>
 		</div>
 		<div class='moon_tags'>
 			<% if (locals.tags && tags.length > 0) { %>
-				<%- partial('tag/tag', tags) %>
+				<%- include views/tag/tag.html %>
 			<% } else { %>
 				<p>无标签</p>
 			<% } %>

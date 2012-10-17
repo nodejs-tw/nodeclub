@@ -3,7 +3,6 @@
   <head>
     <!-- meta -->
     <meta charset="utf-8" />
-    <meta name='description' content='<%= config.description %>'>
     <%
     var headers = config.site_headers || [];
     for (var i = 0, l = headers.length; i < l; i++) { 
@@ -12,30 +11,27 @@
     <% } %>
     <link title="RSS" type="application/rss+xml" rel="alternate" href="/rss" />
     <!-- style -->
-    <link rel="stylesheet" type="text/css" href="/libs/bootstrap/css/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
-    <link type='text/css' rel='stylesheet' href='/libs/code-prettify/prettify.css' />
-    <% if (locals.extra_style) { %>
-    <style type="text/css">
-      <%- locals.extra_style %>
-    </style>
-    <% } %>
-    <script src='/libs/code-prettify/prettify.js'></script>
+    <link rel="stylesheet" type="text/css" href="<%- config.site_static_host %>/libs/bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="<%- config.site_static_host %>/stylesheets/style.css" />
+    <link type='text/css' rel='stylesheet' href='<%- config.site_static_host %>/libs/code-prettify/prettify.css' />
+    <script src='<%- config.site_static_host %>/libs/code-prettify/prettify.js'></script>
     <!-- script -->
-    <script src='/libs/jquery/jquery.js'></script>
-    <script src='/libs/bootstrap/js/bootstrap.js'></script>
-    <script src='/javascripts/main.js'></script>
+    <script src='<%- config.site_static_host %>/libs/jquery/jquery.js'></script>
+    <script src='<%- config.site_static_host %>/libs/bootstrap/js/bootstrap.js'></script>
+    <script src='<%- config.site_static_host %>/javascripts/main.js'></script>
     <% if (config.site_enable_search_preview) { %>
     <script>
       var __google_search_domain = '<%= config.site_google_search_domain || "" %>';
     </script>
-    <script src='/javascripts/google_search_preview.js'></script>
+    <script src='<%- config.site_static_host %>/javascripts/google_search_preview.js'></script>
     <% } %>
-    <% if (locals.topic) { %>
-    <title><%= topic.title %> - <%= config.name %></title>
-    <% } else { %>
-    <title><%= config.description %></title>
-    <% } %>
+    <% 
+    var site_title = config.site_title || config.name;
+    if (locals.topic) {
+      site_title = topic.title + ' - ' + site_title;
+    }
+    %>
+    <title><%= site_title %></title>
   </head>
   <body>
     <!-- navbar -->
@@ -44,7 +40,7 @@
         <div class='container'>
           <a class='brand' href='/'><%- config.site_logo || config.name %></a>
           <form id='search_form' class='navbar-search' action="/">
-            <input type='text' id='q' name='q' class='search-query span3' value='<%= locals.keyword || '' %>'/>
+            <input type="text" name="q" class="search-query span3" value="<%= locals.keyword || '' %>" />
           </form>
           <ul class='nav pull-right'>
             <li><a href='/'>首页</a></li> 

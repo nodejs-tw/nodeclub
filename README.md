@@ -1,6 +1,8 @@
-# nodeclub
+# nodeclub [![Build Status](https://secure.travis-ci.org/cnodejs/nodeclub.png?branch=master)](http://travis-ci.org/cnodejs/nodeclub)
 
-[![Build Status](https://secure.travis-ci.org/cnodejs/nodeclub.png?branch=master)](http://travis-ci.org/cnodejs/nodeclub)
+![logo](https://raw.github.com/cnodejs/nodeclub/master/logo.png)
+
+jscoverage: [100%](http://fengmk2.github.com/coverage/nodeclub.html)
 
 基于nodejs的社区系统
 

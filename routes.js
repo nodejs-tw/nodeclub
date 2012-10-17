@@ -8,6 +8,7 @@
  * Module dependencies.
  */
 
+var home = require('./controllers/home');
 var sign = require('./controllers/sign');
 var site = require('./controllers/site');
 var user = require('./controllers/user');
@@ -19,11 +20,11 @@ var rss = require('./controllers/rss');
 var upload = require('./controllers/upload');
 var static = require('./controllers/static');
 var tools = require('./controllers/tools');
-var status = require('./controllers/status');
+// var status = require('./controllers/status');
 
-module.exports = function (app) {
+module.exports = function routes(app) {
   // home page
-  app.get('/', site.index);
+  app.get('/', home);
 
   // sign up, login, logout
   app.get('/signup', sign.signup);
@@ -101,5 +102,5 @@ module.exports = function (app) {
   app.get('/rss', rss.index);
 
   // site status
-  app.get('/status', status.status);
+  // app.get('/status', status.status);
 };

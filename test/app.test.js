@@ -1,5 +1,5 @@
 /*!
- * nodeclub - test/app.js
+ * nodeclub - test/app.test.js
  * Copyright(c) 2012 fengmk2 <fengmk2@gmail.com>
  * MIT Licensed
  */
@@ -14,18 +14,12 @@ var app = require('../app');
 var request = require('supertest');
 
 
-describe('app.js', function () {
-
-  before(function (done) {
-    app.listen(0, done);
-  });
-  after(function () {
-    app.close();
-  });
+describe('app.test.js', function () {
 
   it('should / status 200', function (done) {
     request(app)
     .get('/')
+    .expect(/<title>NodeClub<\/title>/)
     .expect(200, done);
   });
 

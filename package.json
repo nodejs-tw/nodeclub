@@ -4,15 +4,17 @@
   "description": "Community system base on nodejs.",
   "main": "app.js",
   "dependencies": {
-    "express": "2.5.1",
-    "ejs": ">=0.8.0",
+    "connect": "2.6.x",
+    "urlrouter": "0.2.x",
+    "connect-render": "0.1.x",
     "eventproxy": "0.1.3",
     "mongoose": "2.4.1",
     "node-markdown": "0.1.0",
     "validator": "0.3.7",
-    "ndir": ">=0.1.3",
+    "onehost": "0.1.x",
     "nodemailer": "0.3.5",
     "data2xml": "0.4.0",
+    "mkdirp": "0.3.x",
     "xss": ">=0.0.2"
   },
   "devDependencies": {

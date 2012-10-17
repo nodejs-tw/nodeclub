@@ -1,6 +1,7 @@
-TESTS = $(shell find test -type f -name "*.js")
+TESTS = $(shell find test -type f -name "*.test.js")
 TESTTIMEOUT = 5000
 REPORTER = spec
+NAME = nodeclub
 PROJECT_DIR = $(shell pwd)
 
 test:
@@ -8,13 +9,12 @@ test:
 		--reporter $(REPORTER) --timeout $(TESTTIMEOUT) $(TESTS)
 
 cov:
-	@rm -rf ../nodeclub-cov
-	@jscoverage --encoding=utf-8 --exclude=node_modules --exclude=public --exclude=test ./ ../nodeclub-cov
-	@cp -rf ./node_modules ./test ./public ../nodeclub-cov
+	@rm -rf ../$(NAME)-cov
+	@jscoverage --encoding=utf-8 --exclude=node_modules --exclude=public --exclude=test ./ ../$(NAME)-cov
+	@cp -rf ./node_modules ./test ./public ../$(NAME)-cov
 
 test-cov: cov
-	@$(MAKE) -C $(PROJECT_DIR)/../nodeclub-cov test REPORTER=progress
-	@$(MAKE) -C $(PROJECT_DIR)/../nodeclub-cov test REPORTER=html-cov > coverage.html
-	@$(MAKE) test REPORTER=markdown > test_results.md
+	@$(MAKE) -C $(PROJECT_DIR)/../$(NAME)-cov test REPORTER=dot
+	@$(MAKE) -C $(PROJECT_DIR)/../$(NAME)-cov test REPORTER=html-cov > coverage.html
 
 .PHONY: test test-cov cov
