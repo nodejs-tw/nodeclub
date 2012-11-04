@@ -1,10 +1,21 @@
-var topic_ctrl = require('./topic');
+/*!
+ * nodeclub - controllers/rss.js
+ * Copyright(c) 2012 fengmk2 <fengmk2@gmail.com>
+ * MIT Licensed
+ */
 
+"use strict";
+
+/**
+ * Module dependencies.
+ */
+
+var topic_ctrl = require('./topic');
 var config = require('../conf');
 var data2xml = require('data2xml');
 var markdown = require('node-markdown').Markdown;
 
-exports.index = function (req, res, next) {
+module.exports = function rss(req, res, next) {
   if (!config.rss) {
     res.statusCode = 404;
     return res.send('Please set `rss` in config.js');

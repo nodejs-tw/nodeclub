@@ -18,13 +18,14 @@ var topic = require('./controllers/topic');
 var reply = require('./controllers/reply');
 var rss = require('./controllers/rss');
 var upload = require('./controllers/upload');
-var static = require('./controllers/static');
+// var static = require('./controllers/static');
 var tools = require('./controllers/tools');
 // var status = require('./controllers/status');
 
 module.exports = function routes(app) {
   // home page
   app.get('/', home);
+  app.get('/rss', rss);
 
   // sign up, login, logout
   app.get('/signup', sign.signup);
@@ -95,11 +96,8 @@ module.exports = function routes(app) {
   app.get('/site_tools', tools.run_site_tools);
 
   // static
-  app.get('/about', static.about);
-  app.get('/faq', static.faq);
-
-  //rss
-  app.get('/rss', rss.index);
+  // app.get('/about', static.about);
+  // app.get('/faq', static.faq);
 
   // site status
   // app.get('/status', status.status);
