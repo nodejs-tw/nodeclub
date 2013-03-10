@@ -7,6 +7,10 @@ var Schema = mongoose.Schema;
 var config = require('../config');
   
 var UserSchema = new Schema({
+
+  key: { type: String },
+  token: { type: String },
+
   name: { type: String, index: true },
   loginname: { type: String, unique: true },
   pass: { type: String },

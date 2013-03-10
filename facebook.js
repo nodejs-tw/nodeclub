@@ -43,6 +43,7 @@ function run(user) {
       topic.last_reply_at = topic.create_at = new Date(post.created_time);
       topic.update_at = new Date(post.updated_time);
       topic.facebook_id = post.id;
+      topic.slug = 'facebook-' + post.id.toString();
 
       topic.save(function (err, topic) {
         if (err) {
