@@ -209,9 +209,6 @@ function add_reply2(req, res, next) {
     res.send('');
     return;
   }
-  
-  proxy = new EventProxy();
-  proxy.assign('reply_saved', 'message_saved', done);
 
   reply = new Reply();
 
@@ -220,6 +217,9 @@ function add_reply2(req, res, next) {
       res.partial('reply/reply2', {object: reply, as: 'reply'});
     });
   };
+  
+  proxy = new EventProxy();
+  proxy.assign('reply_saved', 'message_saved', done);
 
   reply.content = content;
   reply.topic_id = topic_id;
