@@ -23,60 +23,17 @@ SITE_ROOT_URL = 'http://' + config.hostname + (config.port !== 80 ? ':' + config
 
 mailEvent = new EventProxy();
 
-function trigger() {
-  mailEvent.trigger("getMail");
+function trigger(mail) {
+  mailEvent.trigger("getMail", mail);
 }
 
 // when need to send an email, start to check the mails array and send all of emails.
-mailEvent.on("getMail", function () {
-  if (mails.length === 0) {
-    return;
-  }
-  
-  //遍歷郵件數組，發送每一封郵件，如果有發送失敗的，就再壓入數組，同時觸發mailEvent事件
-  var failed = false;
-  var i;
-  var len;
-  var message;
-  var failedMails = [];
-  var mail;
-  var oldemit;
-  
-  function cb(message) {
-    return function (error, success) {
-      if (error) {
-        failedMails.push(message);
-        failed = true;
-      }
-    };
-  }
-
-  function newEmit(oldemit, mail) {
-    return function () {
-      oldemit.apply(mail, arguments);
-    };
-  }
-
-  for (len = mails.length - 1; 0 <= len; len -= 1) {
-    message = mails[len];
-    mail = undefined;
-    try {
-      message.debug = false;
-      mail = mailer.send_mail(message, cb(message));
-    } catch (e) {
-      failedMails.push(message);
-      failed = true;
+mailEvent.on("getMail", function (mail) {
+  mailer.sendMail(mail, function (err) {
+    if (err) {
+      console.log(err);
     }
-    if (mail) {
-      oldemit = mail.emit;
-      mail.emit = newEmit(oldemit, mail);
-    }
-  }
-  if (failed) {
-    clearTimeout(timer);
-    mails = failedMails;
-    timer = setTimeout(trigger, 60000);
-  }
+  });
 });
 
 function send_mail(data) {
@@ -93,8 +50,7 @@ function send_mail(data) {
     }
     return;
   }
-  mails.push(data);
-  trigger();
+  trigger(data);
 }
 
 function send_active_mail(who, token, name, email, cb) {
