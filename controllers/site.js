@@ -66,7 +66,8 @@ exports.index = function (req, res, next) {
       no_reply_topics: no_reply_topics,
       pages: pages,
       announcement: announcements[0],
-      keyword: keyword
+      keyword: keyword,
+      base:req.path
     });
   };
 

@@ -58,7 +58,8 @@ exports.index = function (req, res, next) {
       tops: tops,
       no_reply_topics: no_reply_topics,
       pages: pages,
-      keyword: keyword
+      keyword: keyword,
+      base:req.path
     });
   };
 
@@ -125,7 +126,7 @@ exports.index = function (req, res, next) {
   });
   
   // 計算頁數
-  topic_ctrl.get_count_by_query(query, function (err, all_topics_count) {
+  topic_ctrl.get_announcements_count_by_query(query, function (err, all_topics_count) {
     if (err) {
       return proxy.emit('error', err);
     }
